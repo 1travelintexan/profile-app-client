@@ -9,6 +9,7 @@ import { API_URL } from './config';
 import Profile from './components/Profile';
 import { AuthContext } from './context/auth.context';
 import Layout from './components/Layout';
+import AddPet from './components/AddPet';
 
 function App() {
   const { storeToken } = useContext(AuthContext);
@@ -54,6 +55,10 @@ function App() {
     }
   };
 
+  const handleAddPet = async (pet) => {
+    console.log(pet);
+  };
+
   return (
     <div>
       <Routes>
@@ -67,6 +72,15 @@ function App() {
           element={
             <Layout>
               <Profile />
+            </Layout>
+          }
+        />
+        <Route
+          path="/add-pet"
+          exact
+          element={
+            <Layout>
+              <AddPet onAddPet={handleAddPet} />
             </Layout>
           }
         />
