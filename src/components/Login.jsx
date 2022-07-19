@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 function Login({ onLogin }) {
   const [user, setUser] = useState({
@@ -24,7 +24,7 @@ function Login({ onLogin }) {
           <label>Username</label>
           <input type="text" name="username" onChange={handleInput} />
           <label>Password</label>
-          <input type="text" name="password" onChange={handleInput} />
+          <input type="password" name="password" onChange={handleInput} />
         </div>
         <div className="hello-div">
           <h3>Hello!</h3>

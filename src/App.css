@@ -2,7 +2,17 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(175, 218, 167);
-
+}
+#navbar {
+  background-color: rgb(24, 141, 61);
+  color: aliceblue;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#logoutBtn {
+  color: aliceblue;
 }
 .home {
   width: 100vw;
@@ -35,40 +45,40 @@ body {
   margin: 20px;
 }
 
-form{
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  flex-direction: column
-}
-
-.form-page{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  flex-direction: column
-}
-
-.signup-card{
-  background-image: url('../../assets/oval-bg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  width:60vw;
-  height:70vh;
-  padding:30px;
-  display:flex;
-  flex-direction:row;
-  justify-content: space-around;
-  align-items: center;
-}
-.signup-form{
-  display:flex;
-  justify-content:center;
+form {
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.hello-div{
+.form-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signup-card {
+  background-image: url('../../assets/oval-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 60vw;
+  height: 70vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.signup-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hello-div {
   width: 20%;
 }

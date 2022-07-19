@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useContext } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -10,7 +11,7 @@ import { AuthContext } from './context/auth.context';
 import Layout from './components/Layout';
 
 function App() {
-  const { isLoggedIn, user, storeToken } = useContext(AuthContext);
+  const { storeToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //signup function with fetch
@@ -23,8 +24,7 @@ function App() {
         },
         body: JSON.stringify(user),
       });
-      const newUserDB = await newUser.json();
-      console.log('here is your new user', newUserDB);
+      await newUser.json();
       navigate('/login');
     } catch (err) {
       console.log(err);
@@ -60,7 +60,16 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/profile" exact element={<Profile />} />
+
+        <Route
+          path="/profile"
+          exact
+          element={
+            <Layout>
+              <Profile />
+            </Layout>
+          }
+        />
       </Routes>
     </div>
   );
