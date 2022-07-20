@@ -12,7 +12,7 @@ import Layout from './components/Layout';
 import AddPet from './components/AddPet';
 
 function App() {
-  const { storeToken } = useContext(AuthContext);
+  const { storeToken, user, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //signup function with fetch
@@ -56,7 +56,28 @@ function App() {
   };
 
   const handleAddPet = async (pet) => {
-    console.log(pet);
+    console.log('user', user._id, storeToken, isLoggedIn);
+    if (isLoggedIn) {
+      try {
+        let petWithUser = {
+          ...pet,
+          owner: user._id,
+        };
+
+        await fetch(`${API_URL}/auth/create-pet`, {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(petWithUser),
+        });
+
+        navigate('/profile');
+      } catch (err) {
+        console.log(err);
+        navigate('/profile');
+      }
+    }
   };
 
   return (

@@ -7,6 +7,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(false);
+  const [pets, setPets] = useState(null);
 
   const storeToken = (token) => {
     localStorage.setItem('authToken', token);
@@ -55,10 +56,28 @@ function AuthProviderWrapper(props) {
     authenticateUser();
   };
 
+  //pet routes
+  const fetchPets = async () => {
+    const storedToken = localStorage.getItem('authToken');
+    let petsDB = await axios
+      .get(`${API_URL}/auth/fetch-pets`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((petsResponse) => {
+        const pets = petsResponse.data;
+        setPets(pets);
+        console.log('here are the DB pets', petsResponse);
+      })
+      .catch((error) => {
+        setPets(null);
+        console.log('There was an error fetching the pets', error);
+      });
+  };
   useEffect(() => {
     // Run the function after the initial render,
     // after the components in the App render for the first time.
     authenticateUser();
+    fetchPets();
   }, []);
 
   return (
@@ -67,6 +86,7 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        pets,
         setUser,
         storeToken,
         authenticateUser,
