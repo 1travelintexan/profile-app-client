@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import { AuthContext } from './context/auth.context';
 import Layout from './components/Layout';
 import AddPet from './components/AddPet';
+import axios from 'axios';
 
 function App() {
   const { storeToken, user, isLoggedIn } = useContext(AuthContext);
@@ -56,22 +57,19 @@ function App() {
   };
 
   const handleAddPet = async (pet) => {
-    console.log('user', user._id, storeToken, isLoggedIn);
+    console.log('pet to create client', pet);
     if (isLoggedIn) {
       try {
-        let petWithUser = {
-          ...pet,
-          owner: user._id,
-        };
-
-        await fetch(`${API_URL}/auth/create-pet`, {
-          method: 'post',
-          headers: {
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify(petWithUser),
-        });
-
+        console.log('pet with user', pet);
+        let createdPet = await axios.post(`${API_URL}/auth/create-pet`, pet);
+        // await fetch(`${API_URL}/auth/create-pet`, {
+        //   method: 'post',
+        //   headers: {
+        //     'content-type': 'application/json',
+        //   },
+        //   body: JSON.stringify(pet),
+        // });
+        console.log('here is the new pet', createdPet);
         navigate('/profile');
       } catch (err) {
         console.log(err);
