@@ -59,7 +59,7 @@ function AuthProviderWrapper(props) {
   //pet routes
   const fetchPets = async () => {
     const storedToken = localStorage.getItem('authToken');
-    let petsDB = await axios
+    await axios
       .get(`${API_URL}/auth/fetch-pets`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
@@ -87,6 +87,7 @@ function AuthProviderWrapper(props) {
         isLoading,
         user,
         pets,
+        fetchPets,
         setUser,
         storeToken,
         authenticateUser,

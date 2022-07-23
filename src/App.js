@@ -11,6 +11,7 @@ import { AuthContext } from './context/auth.context';
 import Layout from './components/Layout';
 import AddPet from './components/AddPet';
 import axios from 'axios';
+import UpdateProfile from './components/UpdateProfile';
 
 function App() {
   const { storeToken, user, isLoggedIn } = useContext(AuthContext);
@@ -78,6 +79,24 @@ function App() {
     }
   };
 
+  const handleUpdateProfile = async (userToUpdate) => {
+    console.log('here is the user to update', userToUpdate);
+    if (isLoggedIn) {
+      try {
+        let updatedUser = await axios.post(
+          `${API_URL}/auth/update-user`,
+          userToUpdate
+        );
+
+        console.log('here is the new pet', updatedUser);
+        navigate('/profile');
+      } catch (err) {
+        console.log(err);
+        navigate('/profile');
+      }
+    }
+  };
+
   return (
     <div>
       <Routes>
@@ -100,6 +119,15 @@ function App() {
           element={
             <Layout>
               <AddPet onAddPet={handleAddPet} />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile-update"
+          exact
+          element={
+            <Layout>
+              <UpdateProfile onUpdateProfile={handleUpdateProfile} />
             </Layout>
           }
         />

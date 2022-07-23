@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
   const { user, authenticateUser, pets, fetchPets } = useContext(AuthContext);
@@ -33,6 +33,10 @@ function Profile() {
               );
             })}
         </div>
+        <h3>Update your profile info:</h3>
+        <Button variant="outline-success">
+          <Link to="/profile-update">Update Profile</Link>
+        </Button>
         <h3>Add your pets here:</h3>
         <Button onClick={handleAddPet} variant="outline-success">
           Add Pet

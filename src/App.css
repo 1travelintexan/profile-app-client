@@ -17,9 +17,16 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 #logoutBtn {
   color: aliceblue;
 }
+
+.profile-image {
+  height: 5rem;
+  border-radius: 2.5rem;
+}
+
 .home {
   width: 100vw;
   height: 100vh;
