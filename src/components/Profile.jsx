@@ -7,16 +7,22 @@ function Profile() {
   const { user, authenticateUser, pets, fetchPets } = useContext(AuthContext);
   const navigate = useNavigate();
   useEffect(() => {
-    const refreshPage = async () => {
+    const getProfileInfo = async () => {
       await authenticateUser();
-      fetchPets();
+      await fetchPets();
     };
-    refreshPage();
+    getProfileInfo();
   }, []);
 
   const handleAddPet = () => {
     navigate('/add-pet');
   };
+  console.log(user, pets);
+  if (user === null) {
+    console.log('inside if');
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       {user && <h1>Welcome! {user.username} to your profile</h1>}

@@ -83,12 +83,7 @@ function App() {
     console.log('here is the user to update', userToUpdate);
     if (isLoggedIn) {
       try {
-        let updatedUser = await axios.post(
-          `${API_URL}/auth/update-user`,
-          userToUpdate
-        );
-
-        console.log('here is the new pet', updatedUser);
+        await axios.post(`${API_URL}/auth/update-user`, userToUpdate);
         navigate('/profile');
       } catch (err) {
         console.log(err);

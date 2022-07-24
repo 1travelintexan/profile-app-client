@@ -40,8 +40,8 @@ function UpdateProfile({ onUpdateProfile }) {
     let profileFormData = new FormData();
     profileFormData.append('profileImage', profileImage);
     profileFormData.append('username', currentUser.username);
-    profileFormData.append('breed', currentUser.campus);
-    profileFormData.append('age', currentUser.course);
+    profileFormData.append('campus', currentUser.campus);
+    profileFormData.append('course', currentUser.course);
     profileFormData.append('_id', currentUser._id);
     onUpdateProfile(profileFormData);
   };

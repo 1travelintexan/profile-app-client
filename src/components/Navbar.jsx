@@ -9,6 +9,7 @@ function Navbar() {
     logOutUser();
     navigate('/');
   };
+  if (!user) return <p>Loading from nav</p>;
   return (
     <div id="navbar">
       <h3>Logo</h3>

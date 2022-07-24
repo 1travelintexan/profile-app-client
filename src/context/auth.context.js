@@ -70,6 +70,7 @@ function AuthProviderWrapper(props) {
       })
       .catch((error) => {
         setPets(null);
+
         console.log('There was an error fetching the pets', error);
       });
   };
