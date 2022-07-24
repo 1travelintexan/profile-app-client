@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <div id="navbar">
       <h3>Logo</h3>
-      <h1>Lab-Profile-App!</h1>
+      <h1>The-Pet-App!</h1>
       <div>
         <img src={user.profileImage} alt="profile" className="profile-image" />
         <Button variant="info" id="logoutBtn" onClick={handleLogout}>

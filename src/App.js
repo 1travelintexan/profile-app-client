@@ -14,7 +14,8 @@ import axios from 'axios';
 import UpdateProfile from './components/UpdateProfile';
 
 function App() {
-  const { storeToken, user, isLoggedIn } = useContext(AuthContext);
+  const { storeToken, isLoggedIn, errorMessage, setErrorMessage } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   //signup function with fetch
@@ -46,11 +47,16 @@ function App() {
       });
       const loggedInUserDB = await loggedInUser.json();
 
-      //get token from server response
-      const token = loggedInUserDB.authToken;
-
-      storeToken(token);
-      navigate('/profile');
+      if (loggedInUserDB.errorMessage) {
+        //set the error message to show on the login form
+        setErrorMessage(loggedInUserDB.errorMessage);
+        navigate('/login');
+      } else {
+        //get token from server response
+        const token = loggedInUserDB.authToken;
+        storeToken(token);
+        navigate('/profile');
+      }
     } catch (err) {
       console.log(err);
       navigate('/login');
@@ -97,7 +103,10 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route
+          path="/login"
+          element={<Login onLogin={handleLogin} errorMessage={errorMessage} />}
+        />
 
         <Route
           path="/profile"

@@ -6,6 +6,7 @@ const AuthContext = createContext();
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [user, setUser] = useState(false);
   const [pets, setPets] = useState(null);
 
@@ -78,7 +79,6 @@ function AuthProviderWrapper(props) {
     // Run the function after the initial render,
     // after the components in the App render for the first time.
     authenticateUser();
-    fetchPets();
   }, []);
 
   return (
@@ -93,6 +93,8 @@ function AuthProviderWrapper(props) {
         storeToken,
         authenticateUser,
         logOutUser,
+        errorMessage,
+        setErrorMessage,
       }}
     >
       {props.children}

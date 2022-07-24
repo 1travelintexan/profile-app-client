@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function Profile() {
   const { user, authenticateUser, pets, fetchPets } = useContext(AuthContext);
@@ -19,10 +20,8 @@ function Profile() {
   };
   console.log(user, pets);
   if (user === null) {
-    console.log('inside if');
     return <p>Loading...</p>;
   }
-
   return (
     <div>
       {user && <h1>Welcome! {user.username} to your profile</h1>}
@@ -30,9 +29,10 @@ function Profile() {
         <div>
           <h2>Your Pets:</h2>
           {pets &&
-            pets.map((elem, i) => {
+            pets.map((elem) => {
+              let id = uuidv4();
               return (
-                <div key={elem.name + i}>
+                <div key={id}>
                   <img src={elem.petImage} alt="Your cute Pet" />
                   <h3>{elem.name}</h3>
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Login({ onLogin }) {
+function Login({ onLogin, errorMessage }) {
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -36,6 +36,7 @@ function Login({ onLogin }) {
           <button type="submit">Login</button>
         </div>
       </form>
+      <div>{errorMessage && <p>{errorMessage}</p>}</div>
     </div>
   );
 }
